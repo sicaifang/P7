@@ -43,7 +43,7 @@ p.then().then().then(function (data) {
     });
 }*/
 
-function read() {
+/*function read() {
     let defer = Promise.defer();
     require('fs').readFile('2.txt', 'utf8', function (err, data) {
         if (err) defer.reject(err);
@@ -57,10 +57,32 @@ read().then(function (data) {
     return '好听' + data;
 }).then(function (data) {
     console.log(data);
-})
+})*/
 
 
 
 // 下载promise测试库，promises-aplus-tests
 // npm i promises-aplus-tests -g
-promise3 30分钟
+
+let pp = new Promise(function (resolve, reject) {
+    reject('err');
+});
+
+pp.then().catch(e=> {
+    console.log(e);
+});
+
+
+
+function read2() {
+    return new Promise(function (resolve, reject) {
+        require('fs').readFile('./1.txt', 'utf8', function (err, data) {
+            if (err) reject(err);
+            resolve(data);
+        });
+    });
+}
+
+Promise.race([read2(), read2(), read2()]).then(data => {
+    console.log(data);
+});

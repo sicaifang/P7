@@ -138,6 +138,69 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
     return promise2;
 };
 
+// 捕获错误的方法
+Promise.prototype.catch = function (callback) {
+    return this.then(null, callback);
+};
+// 解析全部的方法
+Promise.all = function (promises) {
+    // promises是一个promise数组
+    return new Promise(function (resolve, reject) {
+        let arr = [];   // 最终返回值的结果
+        let num = 0;    // 表示成功了多少次
+        function processData(index, y) {
+            arr[index] = y;
+            if (++num === promises.length) {
+                resolve(arr);
+            }
+        }
+        for (let i = 0; i < promises.length; i++) {
+            promises[i].then(function (y) {
+                processData(i, y)
+            }, reject)
+        }
+    });
+};
+
+Promise.all = function(promises){
+    let i = 0; // 用来计数有多少个promise执行成功
+    let result = [];// 存放结果
+    return new Promise(function(resolve,reject){
+        promises.forEach(function(p,index){
+            p.then(function(data){
+                // 将结果和数组的索引对应起来
+                result[index] = data;
+                if(++i === promises.length){
+                    // 当promise全部完成后调用all方法成功的回调
+                    resolve(result)
+                }
+            },reject);
+        });
+    });
+};
+
+// 只要有一个promise成功了，就算成功；只要有一个promise失败了，就算失败
+Promise.race = function (promises) {
+    return new Promise(function (resolve, reject) {
+        promises.forEach((p, index) => {
+            p.then(resolve, reject);
+        });
+    });
+};
+
+
+Promise.resolve = function (value) {
+    return new Promise(function (resolve, reject) {
+        resolve(value);
+    });
+};
+
+Promise.reject = function (reason) {
+    return new Promise(function (resolve, reject) {
+        reject(reason);
+    });
+};
+
 Promise.defer = Promise.deferred = function () {
     let dfd = {};
     dfd.promise = new Promise(function (resolve, reject) {
