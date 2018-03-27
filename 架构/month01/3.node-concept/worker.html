@@ -14,6 +14,17 @@
     worker.onmessage = function (e) {
         console.log(e.data);
     };
+
+    console.log(1);
+    setTimeout(function () {
+        console.log(2);
+        Promise.resolve(1).then(function () {
+            console.log('promise')
+        });
+    });
+    setTimeout(function () {
+        console.log(3);
+    });
 </script>
 </body>
 </html>

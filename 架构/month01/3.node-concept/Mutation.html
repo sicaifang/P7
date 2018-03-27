@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- 当dom加载完毕后 来一句渲染完成 -->
+    <script>
+        console.log(1);
+        let observer = new MutationObserver(function () {
+            console.log('渲染完成');
+        });
+        observer.observe(app, {
+            childList: true,
+        });
+        for (let i = 0; i < 100; i++) {
+            let p = document.createElement('p');
+            app.appendChild(p);
+        }
+        console.log(2);
+    </script>
+</body>
+</html>

@@ -17,3 +17,12 @@ setTimeout(function () {
 });
 
 console.log(5);
+
+
+// 当触发回调函数时，回调函数会写入队列中
+setTimeout(function () {
+    console.log('定时');
+}, 4);
+for (var i = 0; i < 10000; i++) {
+    console.log(i);
+}

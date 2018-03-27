@@ -86,3 +86,8 @@ function read2() {
 Promise.race([read2(), read2(), read2()]).then(data => {
     console.log(data);
 });
+
+// promise4 24
+
+
+
