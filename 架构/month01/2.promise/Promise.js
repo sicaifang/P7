@@ -39,9 +39,9 @@ function resolvePromise(p2, x, resolve, reject) {
     if (p2 === x) {   // 这里应该报一个类型错误
         return reject(new TypeError('循环引用了'));
     }
-    let called; // 表示十分调用过成功or失败
+    let called; // 表示调用过成功or失败
     // 看x是不是promise, promise是一个对象
-    if (x !== null || typeof x === 'object' || typeof x === 'function') {
+    if (x !== null && (typeof x === 'object' || typeof x === 'function')) {
         // 可能是promise {},这个对象中是否有then方法
         // 如果有then就认为它是promise
         try {
@@ -120,7 +120,7 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
                     } catch (e) {
                         reject(e);
                     }
-                })
+                });
             });
             self.onRejectedCb.push(function () {
                 setTimeout(function () {
@@ -130,7 +130,7 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
                     } catch (e) {
                         reject(e);
                     }
-                })
+                });
             });
         });
     }
