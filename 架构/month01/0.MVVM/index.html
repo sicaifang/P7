@@ -27,9 +27,32 @@
         // delete obj.music;    configurable设为true时才可
         // obj.music = '告白气球';  writable设为true时才是可写的   
         for(let key in obj) {
-            console.log(key);   // enumerable设为true时才可以枚举对象内定义的属性
+            // console.log(key);   // enumerable设为true时才可以枚举对象内定义的属性
         }
-        console.log(obj);
+        // console.log(obj);
     </script>
 </body>
 </html>
+<script>
+    let o = {};
+    o.singer = 'Jay';
+    Object.defineProperty(o, 'music', {
+        configurable: true,
+        enumerable: true,
+        // writable: true,
+        // value: '天涯'
+        get() {
+            return '我的地盘'
+        },
+        set(val) {
+            console.log(val);
+        }
+    });
+    // delete o.music;
+    o.music = '听妈妈的话';
+
+    // for (let key in o) {
+    //     console.log(key);
+    // }
+    console.log(o);
+</script>
