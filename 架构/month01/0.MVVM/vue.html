@@ -7,29 +7,45 @@
     <title>Vue</title>
 </head>
 <body>
+    <!--<div id="app">-->
+        <!--{{a.b}}-->
+        <!--<p>a的值是{{a.b}}</p>-->
+        <!--<div v-on:click="clickMe">b的值是{{c}}</div>-->
+        <!--{{c}}-->
+        <!--<br>-->
+        <!--<input type="text" v-model="c">-->
+        <!--{{sum}}-->
+    <!--</div>-->
     <div id="app">
-        {{a.b}}
-        <p>a的值是{{a.b}}</p>
-        <div v-on:click="clickMe">b的值是{{c}}</div>
-        {{c}}
-        <br>
-        <input type="text" v-model="c">
-        {{sum}}
-    </div>
+        <h1>{{song}}</h1>
+        <p>《{{album.name}}》是{{singer}}2005年11月发行的专辑</p>
 
+    </div>
 </body>
 </html>
 <script src="vue.js"></script>
 <script>
     let vue = new Vue({
         el: '#app',
-        data: {
-            a: {
-                b: 1
+        data: {     // Object.defineProperty(obj, 'song', '发如雪');
+            song: '发如雪',
+            album: {
+                name: '十一月的萧邦',
+                theme: '夜曲'
             },
-            b: 8,
-            c: 2
+            singer: '周杰伦'
         },
+//        data: {
+//            a: {
+//                b: {
+//                    hi: {
+//                        wow: '你好'
+//                    }
+//                }
+//            },
+//            b: 8,
+//            c: 2
+//        },
         methods: {
             clickMe() {
                 alert(1);
@@ -44,7 +60,7 @@
         },
         mounted() {
             setTimeout(() => {
-                console.log('爱不爱我');
+//                console.log('爱不爱我');
             }, 1000)
         }
     });

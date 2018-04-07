@@ -1,14 +1,15 @@
-const fs = require('fs');
+let WriteStream = require('./WriteStream');
 
-// 写的时候文件不存在 会创建文件
-let ws = fs.createWriteStream('2.txt', {
+let ws = new WriteStream('3.txt', {
+    flags: 'w',
     highWaterMark: 3,
     autoClose: true,
-    flags: 'w',
     encoding: 'utf8',
-    mode: 0o666
+    mode: 0o666,
+    start: 0
 });
 
+// ws.write('你d好', 'utf8', () => {});
 
 let i = 9;
 

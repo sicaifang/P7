@@ -15,7 +15,7 @@ const rs = fs.createReadStream('1.txt', {
     autoClose: true,    // 读取完毕后自动关闭
     highWaterMark: 3,   // 默认是64k   64*1024字节
     start: 0,
-    end: 7          // 不同点：end 包前又包后
+    end: 3          // 不同点：end 包前又包后
 });
 
 // 其实一般情况下，{}配置项是不用我们写的

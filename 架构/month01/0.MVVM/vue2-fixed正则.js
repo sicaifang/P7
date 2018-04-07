@@ -101,19 +101,19 @@ function Compile(el, vm) {
 
 
             if (node.nodeType === 3 && reg.test(txt)) { //  即是文本节点又有大括号{}
-                //console.log(RegExp.$1); // 取匹配到的第一个分组     a.a b
-                let arr = RegExp.$1.split('.');
-                let val = vm;
-                arr.forEach(function (key) { // 取this.a.a
-                    val = val[key];
-                });
+                !function replaceTxt() {
+                    node.textContent = txt.replace(reg, (matched, placeholder) => {
+                        //console.log(placeholder);   // 匹配到的分组 如：song, album.name, singer...
 
-                new Watcher(vm, RegExp.$1, function (newVal) {    // 函数里需要接收一个新的值
-                    node.textContent = txt.replace(reg, newVal).trim();
-                });
-                // 替换的逻辑
-                node.textContent = txt.replace(reg, val).trim();
+                        new Watcher(vm, placeholder, replaceTxt);  // 监听变化，重新进行匹配替换内容
+
+                        return placeholder.split('.').reduce((val, key) => {
+                            return val[key];
+                        }, vm);
+                    });
+                }();
             }
+
             if (node.nodeType === 1) {  // 元素节点
                 let nodeAttr = node.attributes;     // 获取dom节点的属性
                 Array.from(nodeAttr).forEach(attr => {
