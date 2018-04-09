@@ -31,7 +31,6 @@ function Vue(options = {}) {
 function initComputed() {   // 具有缓存功能的
     let vm = this;
     let computed = this.$options.computed;  // 从options上拿到computed属性
-    console.log(computed);
     Object.keys(computed).forEach(key => {
         Object.defineProperty(vm, key, {    // computed[key]
             get: typeof computed[key] === 'function' ? computed[key] : computed[key].get,
@@ -98,20 +97,20 @@ function Compile(el, vm) {
     function replace(frag) {
         Array.from(frag.childNodes).forEach(function (node) {
             let txt = node.textContent;
-            let reg = /\{\{(.*)\}\}/;
+            let reg = /\{\{(.*?)\}\}/g;
+            let arr = [];
 
             if (node.nodeType === 3 && reg.test(txt)) { //  即是文本节点又有大括号{}
-                //console.log(RegExp.$1); // 取匹配到的第一个分组     a.a b
-                let arr = RegExp.$1.split('.');
-                let val = vm;
-                arr.forEach(function (key) { // 取this.a.a
-                    val = val[key];
-                });
-                new Watcher(vm, RegExp.$1, function (newVal) {    // 函数里需要接收一个新的值
-                    node.textContent = txt.replace(reg, newVal).trim();
-                });
-                // 替换的逻辑
-                node.textContent = txt.replace(reg, val).trim();
+                !function replaceTxt() {
+                    node.textContent = txt.replace(reg, function(matched, placeholder) {
+                        // placeholder得到的是album.name和singer
+                        new Watcher(vm, placeholder, replaceTxt);
+
+                        return placeholder.split('.').reduce(function(val, key) {
+                            return val[key];
+                        }, vm);
+                    });
+                }();
             }
             if (node.nodeType === 1) {  // 元素节点
                 let nodeAttr = node.attributes;     // 获取dom节点的属性

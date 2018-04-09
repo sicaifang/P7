@@ -7,7 +7,7 @@
     <title>Vue</title>
 </head>
 <body>
-    <div id="app">
+    <!-- <div id="app">
         {{a.b}}
         <p>a的值是{{a.b}}</p>
         <div v-on:click="clickMe">b的值是{{c}}</div>
@@ -15,20 +15,24 @@
         <br>
         <input type="text" v-model="c">
         {{sum}}
-    </div>
+    </div> -->
 
+    <div id="app">
+        <p>《{{album.name}}》是{{singer}}2005年11月发行的专辑</p>
+    </div>
 </body>
 </html>
 <script src="vue.js"></script>
 <script>
     let vue = new Vue({
         el: '#app',
-        data: {
-            a: {
-                b: 1
+        data: {     // Object.defineProperty(obj, 'song', '发如雪');
+            song: '发如雪',
+            album: {
+                name: '十一月的萧邦',
+                theme: '夜曲'
             },
-            b: 8,
-            c: 2
+            singer: '周杰伦'
         },
         methods: {
             clickMe() {
