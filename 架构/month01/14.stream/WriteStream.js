@@ -116,6 +116,13 @@ class WriteStream extends EventEmitter {
             }
         }
     }
+
+    end() {
+        if (this.autoClose) {
+            this.emit('end');
+            this.destory();
+        }
+    }
 }
 
 module.exports = WriteStream;

@@ -1,6 +1,6 @@
 (function (modules) {
     function require(moduleId) {    // moduleId代表的就是文件名
-        var module = installedModules[moduleId] = {
+        var module = {
             exports: {}
         };
         modules[moduleId].call(module.exports, module, module.exports, require);
