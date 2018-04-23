@@ -1,0 +1,1 @@
+module.exports = '欢迎来到魔法的世界';
