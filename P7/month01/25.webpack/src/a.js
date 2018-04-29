@@ -1,0 +1,1 @@
+module.exports = 'webpack4.0';

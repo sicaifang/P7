@@ -43,20 +43,21 @@ function throttle(func, delay = 300, timer = null) {
     对于curry(foo),g函数参数满足4个，就调用foo(a,b,c,d)
     如果小于4个就返回一个可以继续积累参数的函数
 */
+function curry(fn) {
+    const g = (...allArgs) => allArgs.length >= fn.length ?
+        fn(...allArgs) : 
+        (...args) => g(...allArgs, ...args)
+
+    return g;
+}
+
+// 测试用例
 const foo = curry((a, b, c, d) => {
     console.log(a, b, c, d);
 });
 foo(1)(2)(3)(4);
 const f = foo(1)(2)(3);
 f(5);
-
-function curry(func) {
-    const g = (...allArgs) => allArgs.length >= func.length ?
-        func(...allArgs) : 
-        (...args) => g(...allArgs, ...args)
-
-    return g;
-}
 
 // 6. ★★★☆☆ Y-组合子
 const curryY = func => y(
