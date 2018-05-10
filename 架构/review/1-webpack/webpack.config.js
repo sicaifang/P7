@@ -13,7 +13,7 @@ const PUBLIC_PATH = '/';
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: 'main.js',
+        filename: 'index.js',
         path: path.join(__dirname, 'dist'),
         // publicPath: PUBLIC_PATH
     },
@@ -56,7 +56,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new UglifyjsWebpackPlugin(),    
         lessExtract,
         new HtmlWebpackPlugin({
             template: './src/index.html',
@@ -64,11 +63,13 @@ module.exports = {
         }),
         new ExtractTextWebpackPlugin('css/index.css'),
         new CleanWebpackPlugin(path.resolve('dist')),   // 打包前先清空输出目录
+        new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
-        host: 'localhost',
         compress: false,
-        port: 3000
+        port: 3000,
+        open: true,
+        hot: true
     }
 }

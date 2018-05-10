@@ -1,0 +1,22 @@
+[
+    {
+        "avatar": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epvfuORK5yyrzkGlLQ0iaibbUEG0a1ib0RmAibNu4pXAVy0eD1ice7TPP6mzicfuxiav7PBHvB1OgyicoZCAQ/132",
+        "username": "🍥蘑菇酱",
+        "content": "先感谢下楼主写出这么详细的教程，对小白来说很受用，有一个点想问下，在实现热更新中的js是不是会重新执行这个js代码一次，因为如果在这个js里是一个执行添加dom节点的操作的话，会每保存一次，就会添加多一次节点"
+    },
+    {
+        "avatar": "https://avatars1.githubusercontent.com/u/26293313?v=4",
+        "username": "王文健",
+        "content": "感谢文章，很详细的webpack4基本配置很有参考价值，4跟3配置差别不大"
+    },
+    {
+        "avatar": "https://lc-mhke0kuv.cn-n1.lcfile.com/6273f626ddc0fcec5778.jpg?imageView/2/w/100/h/100/q/80/format/png",
+        "username": "闫广豪",
+        "content": "Np x有什么作用啊"
+    },
+    {
+        "avatar": "https://avatars2.githubusercontent.com/u/21259427?v=4",
+        "username": "sicaifang",
+        "content": "写的太详细了，通俗易懂。楼主很用心，感谢分享。🙏🙏"
+    }
+]

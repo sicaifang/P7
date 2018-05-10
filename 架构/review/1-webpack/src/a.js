@@ -1,1 +1,1 @@
-module.exports = '欢迎来到魔法的世界';
+module.exports = '欢迎来到哈利波特魔法的世界';
