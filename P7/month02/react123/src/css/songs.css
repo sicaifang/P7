@@ -1,0 +1,9 @@
+@import './reset.css';
+@import './list.css';
+@import './play.css';
+
+.songs-box {
+    background: #fafafa;
+    margin: 20px 30px;
+    width: calc(100% - 60px);
+}

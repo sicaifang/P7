@@ -1,0 +1,52 @@
+.play {
+    background: rgba(0, 0, 0, .5);
+    display: none;
+    height: calc(100% - 55px);
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.play:before {
+    animation: rotate 4s linear infinite both;
+    background: url(../imgs/icons.png) -40px -200px no-repeat;
+    content: '';
+    height: 36px;
+    left: 50%;
+    margin: -18px 0 0 -18px;
+    position: absolute;
+    top: 50%;
+    width: 36px;
+}
+.process_bar {
+    background: rgba(255, 255, 255, .5);
+    bottom: 0;
+    height: 5px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+}
+.process_bar .process {
+    background: #19b955;
+    height: 5px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 0;
+}
+.duration {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    bottom: 15px;
+    color: #333;
+    font-size: 14px;
+    padding: 2px 8px;
+    position: absolute;
+    right: 10px;
+}
+
+@keyframes rotate {
+    0% {transform: rotate(0);}
+    100% {transform: rotate(360deg);}
+}
