@@ -33,6 +33,7 @@
     left: 0;
     position: absolute;
     top: 0;
+    transition: width .3s;
     width: 0;
 }
 .duration {

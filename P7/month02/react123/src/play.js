@@ -20,16 +20,6 @@ export default class Play extends Component {
     process = () => {
         let bar = this.refs.bar;
         let process = this.refs.process;
-
-        /* this.timer = setInterval(() => {
-             let scale = this.props.currentTime / this.props.time;
-
-            if (this.state.num * scale >= this.state.total) {
-                clearInterval(this.timer);
-            }
-            process.style.width = `${this.state.num}px`;
-        }, 1000); */
-        console.log(this.props.width);
         process.style.width = `${this.props.percent}%`;
     }
     render() {
