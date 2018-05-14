@@ -1,6 +1,6 @@
 .play {
     background: rgba(0, 0, 0, .5);
-    display: none;
+    /* display: none; */
     height: calc(100% - 55px);
     left: 0;
     position: absolute;

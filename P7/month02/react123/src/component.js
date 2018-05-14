@@ -18,6 +18,7 @@ class Clock extends Component {
         </React.Fragment>)
     }
     componentDidMount() {
+        console.log('mark');
         this.timer = setInterval(() => {
             this.setState({date: new Date().toLocaleString()});
         }, 1000);

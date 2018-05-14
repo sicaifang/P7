@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class Play extends Component {
     constructor() {
         super();
-        this.state = { duration: '', num: 0, total: 0 };
+        this.state = { duration: '' };
     }
     formatDate = () => {
         let d = parseInt(this.props.time / 1000),
@@ -12,9 +12,7 @@ export default class Play extends Component {
 
         let duration = `${this.fill(m)}:${this.fill(s)}`;
 
-        let total = Math.floor((m + '.' + s) * 100);
-        this.setState({ duration, total });
-
+        this.setState({ duration });
     }
     fill(n) {
         return n < 10 ? '0' + n : '' + n;
@@ -22,16 +20,17 @@ export default class Play extends Component {
     process = () => {
         let bar = this.refs.bar;
         let process = this.refs.process;
-        
-        this.timer = setInterval(() => {
-            this.setState({ num: this.state.num + 1 });
-            let scale = Number(bar.offsetWidth / this.state.total).toFixed(1);
+
+        /* this.timer = setInterval(() => {
+             let scale = this.props.currentTime / this.props.time;
 
             if (this.state.num * scale >= this.state.total) {
                 clearInterval(this.timer);
             }
             process.style.width = `${this.state.num}px`;
-        }, 1000);
+        }, 1000); */
+        console.log(this.props.width);
+        process.style.width = `${this.props.percent}%`;
     }
     render() {
         return (
@@ -45,7 +44,8 @@ export default class Play extends Component {
     }
     componentDidMount() {
         this.formatDate();
+    }
+    componentDidUpdate() {
         this.process();
     }
-    
 }

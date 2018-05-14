@@ -10,10 +10,10 @@ import './css/songs.css';
 class Songs extends Component {
     constructor() {
         super();
-        this.state = { songs: [], mp3Url: '', isPlay: false };
+        this.state = { songs: [], mp3Url: '', isPlay: false, duration: 0 };
     }
-    chooseSong = (url, isPlay) => { // 子传父通信 -> 父提供一个方法，子调用后将参数回传
-        this.setState({mp3Url: url, isPlay});
+    chooseSong = (url, isPlay, width) => { // 子传父通信 -> 父提供一个方法，子调用后将参数回传
+        this.setState({mp3Url: url, isPlay, width});
     }
     render() {
         return (
@@ -21,10 +21,10 @@ class Songs extends Component {
                 <ul>
                     {this.state.songs.map((item, index) => (
                         /* 这里不能写注释的，*/ 
-                        <List key={index} index={index} {...item} choose={this.chooseSong}></List>
+                        <List key={index} index={index} {...item} choose={this.chooseSong} current={this.state.current}></List>
                     ))}
                 </ul>
-                <Audio url={this.state.mp3Url} played={this.state.isPlay}></Audio>
+                <Audio url={this.state.mp3Url} played={this.state.isPlay} width={this.state.width}></Audio>
             </div>
         );
     }
